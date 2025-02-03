@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Valentín</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Freebooter+Script&display=swap');
+        
+        body {
+            text-align: center;
+            font-family: "Dancing Script", cursive;
+            font-style: italic;
+            background-color: #FFFACD; /* Amarillo claro */
+            overflow: hidden;
+        }
+        #gif-container img {
+            width: 250px;
+        }
+        .button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            border: none;
+        }
+        #yes-button {
+            background-color: green; /* Verde */
+            color: white;
+        }
+        #no-button {
+            background-color: red; /* Rojo */
+            color: white;
+        }
+        #question {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 36px;
+            color: #5499C7; /* Azul */
+        }
+        #valentine {
+            font-family: 'Freebooter Script', cursive;
+            font-size: 72px;
+            color: red;
+        }
+        .love-message, .extra-message {
+            font-family: 'Freebooter Script', cursive;
+            font-size: 48px;
+            color: #C39BD3; /* Morado */
+            font-style: italic;
+        }
+        .hearts, .flowers {
+            position: absolute;
+            font-size: 30px;
+            animation: floatUp 3s linear forwards;
+        }
+        .hearts {
+            color: red;
+        }
+        .flowers {
+            color: pink;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-100px) scale(1.2); }
+            100% { transform: translateY(-200px) scale(0); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="gif-container">
+        <img id="main-gif" src="https://i.pinimg.com/originals/a6/5f/fb/a65ffbdeaf9bb60e28cc18ae5eec8f58.gif" alt="GIF 1"> 
+    </div>
+    <h1 id="question">CAN I BE YOUR</h1>
+    <h1 id="valentine">VALENTINE?</h1>
+    <button id="yes-button" class="button" onclick="acceptLove()">Sí</button>
+    <button id="no-button" class="button" onclick="increaseYes()">No</button>
+    
+    <script>
+        function acceptLove() {
+            let mainGif = document.getElementById("main-gif");
+            let question = document.getElementById("question");
+            let valentine = document.getElementById("valentine");
+            let yesButton = document.getElementById("yes-button");
+            let noButton = document.getElementById("no-button");
+
+            if (mainGif) {
+                mainGif.src = "https://www.icegif.com/wp-content/uploads/snoopy-valentine-icegif-6.gif";
+            }
+
+            let message = document.createElement("h2");
+            message.className = "love-message";
+            message.innerText = "YOU ARE ALL MY WORLD";
+            document.body.appendChild(message);
+            
+            let extraMessage = document.createElement("h2");
+            extraMessage.className = "extra-message";
+            extraMessage.innerText = "I LOVE YOU!!";
+            document.body.appendChild(extraMessage);
+
+            if (question) question.style.display = "none";
+            if (valentine) valentine.style.display = "none";
+            if (yesButton) yesButton.style.display = "none";
+            if (noButton) noButton.style.display = "none";
+
+            createHearts();
+            createFlowers();
+        }
+        
+        function increaseYes() {
+            let yesButton = document.getElementById("yes-button");
+            if (yesButton) {
+                let currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+                yesButton.style.fontSize = (currentSize * 2) + "px";
+            }
+        }
+        
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("hearts");
+                heart.innerHTML = "❤️";
+                document.body.appendChild(heart);
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.top = Math.random() * 100 + "vh";
+                heart.style.animationDuration = (Math.random() * 2 + 1) + "s";
+                setTimeout(() => heart.remove(), 3000);
+            }
+        }
+        
+        function createFlowers() {
+            for (let i = 0; i < 15; i++) {
+                let flower = document.createElement("div");
+                flower.classList.add("flowers");
+                flower.innerHTML = "🌸";
+                document.body.appendChild(flower);
+                flower.style.left = Math.random() * 100 + "vw";
+                flower.style.top = Math.random() * 100 + "vh";
+                flower.style.animationDuration = (Math.random() * 2 + 1) + "s";
+                setTimeout(() => flower.remove(), 3000);
+            }
+        }
+    </script>
+</body>
+</html>
